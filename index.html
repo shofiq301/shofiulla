@@ -1,100 +1,828 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Md Shofiulla - Senior Software Engineer (iOS)</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Md Shofiulla — Portfolio</title>
+  <meta name="description" content="Portfolio of Md Shofiulla — Mobile & iOS Developer" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      background:linear-gradient(180deg, #071023 0%, #07182b 100%);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px 16px;
+      display:flex;
+      justify-content:center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .code-lines {
+      position: absolute;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      background: var(--accent);
+      width: 2px;
+      height: 14px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0%, 100% { box-shadow: 0 0 5px var(--accent); }
+      50% { box-shadow: 0 0 20px var(--accent), 0 0 30px var(--accent); }
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      animation: slideInUp 0.8s ease-out;
+    } 
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .avatar{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#031024;
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1) rotate(5deg);
+      animation: glow 2s infinite;
+    }
+
+    .brand h1{font-size:18px;margin:0}
+    .brand p{margin:0;color:var(--muted);font-size:13px}
+
+    nav{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      animation: slideInRight 0.8s ease-out;
+    }
+
+    .btn{
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.04);
+      padding:10px 14px;
+      border-radius:10px;
+      color:inherit;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3);
+    }
+
+    .primary{
+      background:linear-gradient(90deg,var(--accent),#7c3aed);
+      color:#031024;
+      border:none;
+      animation: pulse 2s infinite;
+    }
+
+    .primary:hover {
+      animation: none;
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:28px;
+    }
+    
+    @media (max-width:920px){
+      .layout{grid-template-columns:1fr;}
+      header{flex-direction:column;align-items:flex-start}
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:14px;
+      padding:20px;
+      border:1px solid rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+      animation: slideInUp 0.8s ease-out;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      border-color: rgba(255,255,255,0.08);
+    }
+
+    .profile{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 700;
+      color: #031024;
+      transition: all 0.3s ease;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.1) rotate(360deg);
+      box-shadow: 0 0 30px var(--accent);
+    }
+
+    .full-name{
+      font-size:20px;
+      font-weight:700;
+      margin-top:10px;
+      animation: slideInUp 1.2s ease-out;
+    }
+
+    .role{
+      color:var(--muted);
+      font-weight:600;
+      margin-top:6px;
+      animation: slideInUp 1.4s ease-out;
+    }
+
+    .contact{
+      margin-top:16px;
+      width:100%;
+      animation: slideInUp 1.6s ease-out;
+    }
+
+    .contact li{
+      list-style:none;
+      padding:8px 0;
+      border-top:1px dashed rgba(255,255,255,0.02);
+      font-size:14px;
+      color:var(--muted);
+      transition: all 0.3s ease;
+    }
+
+    .contact li:hover {
+      color: var(--accent);
+      transform: translateX(5px);
+    }
+
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: var(--accent);
+    }
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:12px;
+    }
+
+    .pill{
+      background:rgba(255,255,255,0.02);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      border:1px solid rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+    }
+
+    .pill:hover {
+      background: var(--accent);
+      color: #031024;
+      transform: scale(1.05);
+    }
+
+    main{
+      min-height:400px;
+      animation: slideInRight 1s ease-out;
+    }
+
+    .section{
+      margin-bottom:20px;
+      animation: slideInUp 0.6s ease-out;
+    }
+
+    .section h2{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 12px 0;
+    }
+
+    .lead{
+      color:var(--muted);
+      margin:0 0 14px 0;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    @media (max-width:760px){
+      .grid{grid-template-columns:1fr}
+    }
+
+    .project{
+      padding:14px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.1), transparent);
+      transition: left 0.5s;
+    }
+
+    .project:hover::before {
+      left: 100%;
+    }
+
+    .project:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.2);
+    }
+
+    .project h3{margin:0 0 8px 0}
+    .project p{margin:0 0 10px 0;color:var(--muted);font-size:14px}
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{
+      font-size:12px;
+      padding:6px 8px;
+      border-radius:8px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+
+    .tag:hover {
+      background: var(--accent);
+      color: #031024;
+    }
+
+    .job{
+      padding:12px;
+      border-radius:10px;
+      margin-bottom:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border:1px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+
+    .job:hover {
+      transform: translateX(5px);
+      border-color: var(--accent);
+    }
+
+    .job h4{margin:0}
+    .job small{color:var(--muted)}
+    .bullet{margin-top:8px;color:var(--muted);font-size:14px}
+
+    footer{
+      margin-top:30px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      animation: slideInUp 2s ease-out;
+    }
+
+    .row{display:flex;gap:12px;align-items:center}
+    .space{flex:1}
+
+    .social{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:10px;
+      background:rgba(255,255,255,0.02);
+      text-decoration:none;
+      color:inherit;
+      border:1px solid rgba(255,255,255,0.02);
+      transition: all 0.3s ease;
+    }
+
+    .social:hover {
+      background: var(--accent);
+      color: #031024;
+      transform: translateY(-2px);
+    }
+
+    .download{
+      display:inline-block;
+      margin-top:12px;
+    }
+
+    /* Form Styling */
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    form input, form textarea {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.03);
+      background: rgba(255,255,255,0.02);
+      color: inherit;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.2);
+      transform: scale(1.02);
+    }
+
+    /* Staggered animations for projects */
+    .project:nth-child(1) { animation-delay: 0.1s; }
+    .project:nth-child(2) { animation-delay: 0.2s; }
+    .project:nth-child(3) { animation-delay: 0.3s; }
+    .project:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Skills animation */
+    .pill:nth-child(1) { animation: slideInUp 0.8s ease-out 0.1s both; }
+    .pill:nth-child(2) { animation: slideInUp 0.8s ease-out 0.2s both; }
+    .pill:nth-child(3) { animation: slideInUp 0.8s ease-out 0.3s both; }
+    .pill:nth-child(4) { animation: slideInUp 0.8s ease-out 0.4s both; }
+    .pill:nth-child(5) { animation: slideInUp 0.8s ease-out 0.5s both; }
+    .pill:nth-child(6) { animation: slideInUp 0.8s ease-out 0.6s both; }
+    .pill:nth-child(7) { animation: slideInUp 0.8s ease-out 0.7s both; }
+    .pill:nth-child(8) { animation: slideInUp 0.8s ease-out 0.8s both; }
+
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Loading animation */
+    .fade-in {
+      animation: slideInUp 0.6s ease-out both;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1>Md Shofiulla</h1>
-      <p>Senior Software Engineer (iOS)</p>
-      <div class="contact">
-        <a href="mailto:mdshofiqul301@gmail.com">mdshofiqul301@gmail.com</a> |
-        <a href="tel:+8801551805343">+8801551805343</a> |
-        <a href="https://linkedin.com/in/mdshofiulla" target="_blank">LinkedIn</a> |
-        <a href="https://github.com/shofiulla-00108" target="_blank">GitHub</a>
+  <!-- Animated Background -->
+  <div class="bg-animation" id="bgAnimation"></div>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar">MS</div>
+        <div>
+          <h1>Md Shofiulla</h1>
+          <p>Senior Mobile Engineer · iOS & Android · Swift | Kotlin</p>
+        </div>
       </div>
+      <nav>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#experience">Experience</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn primary" href="https://drive.google.com/file/d/YOUR_CV_FILE_ID/view" target="_blank">Download Resume</a>
+      </nav>
+    </header>
+
+    <div class="layout">
+      <!-- LEFT COLUMN -->
+      <aside>
+        <div class="card profile">
+          <div class="profile-image">MS</div>
+          <div class="full-name">Md Shofiulla</div>
+          <div class="role">Senior Software Engineer · iOS</div>
+
+          <ul class="contact" aria-label="contact info">
+            <li>Email: <a href="mailto:mdshfiqul301@gmail.com">mdshfiqul301@gmail.com</a></li>
+            <li>Phone: +8801XXXXXXXXX</li>
+            <li>Location: Dhaka, Bangladesh</li>
+            <li>LinkedIn: <a href="#" target="_blank">linkedin.com/in/md-shofiulla</a></li>
+            <li>GitHub: <a href="#" target="_blank">github.com/mdshofiulla</a></li>
+          </ul>
+
+          <div style="margin-top:16px;text-align:left;width:100%">
+            <h3 style="margin:0 0 8px 0">Skills</h3>
+            <div class="skills">
+              <span class="pill">Swift</span>
+              <span class="pill">SwiftUI</span>
+              <span class="pill">Kotlin</span>
+              <span class="pill">Java</span>
+              <span class="pill">iOS Architecture</span>
+              <span class="pill">REST APIs</span>
+              <span class="pill">Core Data</span>
+              <span class="pill">Firebase</span>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;text-align:left;width:100%">
+            <h3 style="margin:0 0 8px 0">Education</h3>
+            <p style="margin:0;color:var(--muted);font-size:14px">B.Sc. in CSE — Daffodil Int'l University<br><small class="lead">Computer Science & Engineering</small></p>
+          </div>
+
+          <div style="margin-top:16px;text-align:left;width:100%">
+            <h3 style="margin:0 0 8px 0">Languages</h3>
+            <div class="tags">
+              <span class="tag">Bengali (Native)</span>
+              <span class="tag">English (Professional)</span>
+            </div>
+          </div>
+
+          <div class="download">
+            <a class="btn" href="https://drive.google.com/file/d/YOUR_CV_FILE_ID/view" target="_blank">Download CV (PDF)</a>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card">
+          <h3 style="margin:0 0 10px 0">Training & Certifications</h3>
+          <ul style="padding-left:18px;margin:0;color:var(--muted)">
+            <li>iOS Development Bootcamp — Apple Developer Academy</li>
+            <li>Android App Development — Google Developer Certification</li>
+            <li>Machine Learning Basics — Coursera</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- RIGHT COLUMN -->
+      <main>
+        <section class="section card" id="about">
+          <h2>About</h2>
+          <p class="lead">Passionate Senior Mobile Engineer with 5+ years of experience building production iOS & Android applications. I specialize in Swift, SwiftUI, and modern iOS architecture. I enjoy turning innovative concepts into delightful, maintainable apps that scale and provide exceptional user experiences.</p>
+          <div class="row" style="margin-top:10px">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn" href="#contact">Get in Touch</a>
+            <div class="space"></div>
+            <a class="social" href="#" target="_blank">GitHub</a>
+            <a class="social" href="#" target="_blank">LinkedIn</a>
+          </div>
+        </section>
+
+        <section class="section" id="projects">
+          <h2>Projects</h2>
+          <p class="lead">Selected projects showcasing my expertise in mobile development and innovative solutions.</p>
+
+          <div class="grid">
+            <article class="project">
+              <h3>Travel Capsule — Personalized Travel Planner</h3>
+              <p>Advanced travel planning app with AI-powered recommendations, real-time updates, and seamless booking integration.</p>
+              <div class="tags"><span class="tag">SwiftUI</span><span class="tag">CoreML</span><span class="tag">Maps</span></div>
+            </article>
+
+            <article class="project">
+              <h3>Health & Wellness App (Enterprise)</h3>
+              <p>Comprehensive corporate wellness platform with health tracking, gamification, and analytics dashboard.</p>
+              <div class="tags"><span class="tag">Swift</span><span class="tag">Firebase</span><span class="tag">Analytics</span></div>
+            </article>
+
+            <article class="project">
+              <h3>Hotel Booking App (SwiftUI)</h3>
+              <p>Modern hotel booking experience with stunning UI, secure payments, and real-time availability.</p>
+              <div class="tags"><span class="tag">SwiftUI</span><span class="tag">Payments</span><span class="tag">UX</span></div>
+            </article>
+
+            <article class="project">
+              <h3>Throttle Diary — Moto Vlog Platform</h3>
+              <p>Dynamic content management platform for motorcycle enthusiasts with video streaming and community features.</p>
+              <div class="tags"><span class="tag">React Native</span><span class="tag">Video</span><span class="tag">CMS</span></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section card" id="experience">
+          <h2>Experience</h2>
+
+          <div class="job">
+            <h4>Senior Software Engineer — Mobile (iOS)</h4>
+            <small class="lead">Tech Company · 2022 — Present</small>
+            <div class="bullet">
+              • Lead iOS development for consumer apps with 500K+ downloads, architected scalable core modules and coordinated releases <br>
+              • Mentored 5+ junior developers and established code review standards improving code quality by 40%
+            </div>
+          </div>
+
+          <div class="job">
+            <h4>Software Engineer — Mobile</h4>
+            <small class="lead">Startup Inc. · 2020 — 2022</small>
+            <div class="bullet">
+              • Built cross-platform mobile features in Agile teams, integrated 15+ third-party APIs and payment gateways <br>
+              • Optimized app startup time by 60% and reduced crash rates to less than 0.1%
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="education">
+          <div class="card">
+            <h2>Education</h2>
+            <p class="lead">B.Sc. in Computer Science & Engineering — Daffodil International University</p>
+            <ul style="color:var(--muted)">
+              <li>Relevant courses: Advanced Algorithms, Data Structures, Mobile Computing, AI & Machine Learning</li>
+              <li>Graduated with distinction in Mobile Application Development</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section card" id="certifications">
+          <h2>Certifications & Training</h2>
+          <ul style="color:var(--muted)">
+            <li>iOS Development Professional — Apple Developer Academy — 2023</li>
+            <li>Android Certified Developer — Google — 2022</li>
+            <li>Machine Learning for Mobile — Stanford Online — 2021</li>
+          </ul>
+        </section>
+
+        <section class="section card" id="contact">
+          <h2>Contact</h2>
+          <p class="lead">Let's collaborate on your next mobile project. I'm always excited to discuss innovative ideas!</p>
+          <form action="mailto:mdshfiqul301@gmail.com" method="post" enctype="text/plain">
+            <input name="name" placeholder="Your name" required>
+            <input name="email" type="email" placeholder="your@email.com" required>
+            <textarea name="message" rows="4" placeholder="Tell me about your project..." required></textarea>
+            <div style="display:flex;gap:10px;align-items:center">
+              <button class="btn primary" type="submit">Send Message</button>
+              <a class="btn" href="mailto:mdshfiqul301@gmail.com">Email me directly</a>
+            </div>
+          </form>
+        </section>
+
+        <footer>
+          <p>© <span id="year"></span> Md Shofiulla — Crafted with passion · Available for exciting opportunities</p>
+        </footer>
+      </main>
     </div>
-  </header>
+  </div>
 
-  <main class="container">
-    <section id="experience">
-      <h2>Work Experience</h2>
-      <div class="card">
-        <h3>Senior Software Engineer (iOS)</h3>
-        <p><strong>Adventure Dhaka Limited</strong> | 02/2025 - Present | Dhaka, Bangladesh</p>
-        <ul>
-          <li>Spearheaded scalable iOS apps with Swift + TDD (30% fewer bugs).</li>
-          <li>Improved customer satisfaction by 25% with intuitive UI.</li>
-          <li>Ensured 100% cross-platform feature parity.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Software Engineer (iOS)</h3>
-        <p><strong>Adventure Dhaka Limited</strong> | 12/2023 - 01/2025 | Dhaka, Bangladesh</p>
-        <ul>
-          <li>Delivered features boosting monthly active users by 40%.</li>
-          <li>Reduced technical debt by 35% with SOLID architecture.</li>
-          <li>Improved sprint delivery by 20% via agile ceremonies.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Software Engineer (iOS)</h3>
-        <p><strong>Easital Technologies Limited</strong> | 03/2023 - 11/2023</p>
-        <ul>
-          <li>Launched 5+ iOS apps with UIKit + SPM.</li>
-          <li>Cut crash rates by 50% with testing + optimization.</li>
-          <li>Integrated secure authentication & third-party APIs.</li>
-        </ul>
-      </div>
-    </section>
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    <section id="education">
-      <h2>Education</h2>
-      <p><strong>B.Sc. in Computer Science and Engineering</strong> – Daffodil International University (2015-2020) | CGPA: 3.76</p>
-    </section>
+    // Animated background with coding lines
+    function createBackgroundAnimation() {
+      const bgAnimation = document.getElementById('bgAnimation');
+      const codeSnippets = [
+        'func fetchUserData() {',
+        '  guard let url = URL(string: apiEndpoint) else { return }',
+        '  URLSession.shared.dataTask(with: url) { data, response, error in',
+        '    DispatchQueue.main.async {',
+        '      self.updateUI(with: data)',
+        '    }',
+        '  }.resume()',
+        '}',
+        '',
+        'class UserProfile: ObservableObject {',
+        '  @Published var user: User?',
+        '  @Published var isLoading = false',
+        '}',
+        '',
+        'override func viewDidLoad() {',
+        '  super.viewDidLoad()',
+        '  setupConstraints()',
+        '  configureNavigationBar()',
+        '}',
+        '',
+        'private func animateTransition() {',
+        '  UIView.animate(withDuration: 0.3) {',
+        '    self.view.alpha = 1.0',
+        '    self.view.transform = .identity',
+        '  }',
+        '}'
+      ];
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>SwiftUI, UIKit, Combine, Xcode, GitHub, SPM, Unit Testing, Jira, Firebase, TDD, Core Data, Git, Google Map, MVVM</p>
-    </section>
+      function createCodeLine(text, delay = 0) {
+        const line = document.createElement('div');
+        line.className = 'code-lines';
+        line.textContent = text;
+        
+        // Random positioning
+        line.style.left = Math.random() * (window.innerWidth - 400) + 'px';
+        line.style.top = Math.random() * window.innerHeight + 'px';
+        line.style.animationDelay = delay + 's';
+        
+        // Fade in animation
+        line.style.opacity = '0';
+        line.style.animation = 'slideInUp 2s ease-out forwards';
+        
+        bgAnimation.appendChild(line);
+        
+        // Remove after animation
+        setTimeout(() => {
+          if (line.parentNode) {
+            line.remove();
+          }
+        }, 8000);
+      }
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li><strong>ADVENTURE makes booking easy:</strong> Full-featured hotel booking platform.</li>
-        <li><strong>Beeda (Super App):</strong> Multi-service app (rides, food, grocery, courier, pharmacy).</li>
-        <li><strong>Goubba:</strong> Deals & cashback app with Stripe API + Firebase.</li>
-      </ul>
-    </section>
+      // Create typing cursor
+      function createTypingCursor() {
+        const cursor = document.createElement('div');
+        cursor.className = 'code-lines';
+        cursor.innerHTML = '<span class="typing-cursor"></span>';
+        cursor.style.left = '50%';
+        cursor.style.top = '50%';
+        cursor.style.transform = 'translate(-50%, -50%)';
+        bgAnimation.appendChild(cursor);
+        
+        setTimeout(() => {
+          if (cursor.parentNode) {
+            cursor.remove();
+          }
+        }, 4000);
+      }
 
-    <section id="training">
-      <h2>Training</h2>
-      <ul>
-        <li>21st Century Employability Skilling Program – Wadhwani Foundation (2023)</li>
-        <li>B-JET Training – North South University (2022-2023)</li>
-      </ul>
-    </section>
+      // Initial animation
+      codeSnippets.forEach((snippet, index) => {
+        setTimeout(() => {
+          createCodeLine(snippet, index * 0.1);
+        }, index * 200);
+      });
 
-    <section id="languages">
-      <h2>Languages</h2>
-      <p>English (Full Professional), Japanese (Limited Working), Arabic (Limited Working)</p>
-    </section>
+      createTypingCursor();
 
-    <section id="interests">
-      <h2>Interests</h2>
-      <p>Automation, AI, Open-Source, Vlogging, Tech-Trends, Minimalism, History & Culture, Problem-Solving, Sports</p>
-    </section>
-  </main>
+      // Continue animation every 10 seconds
+      setInterval(() => {
+        const randomSnippets = codeSnippets.sort(() => 0.5 - Math.random()).slice(0, 8);
+        randomSnippets.forEach((snippet, index) => {
+          setTimeout(() => {
+            createCodeLine(snippet);
+          }, index * 150);
+        });
+        createTypingCursor();
+      }, 10000);
+    }
 
-  <footer>
-    <p>© 2025 Md Shofiulla</p>
-  </footer>
+    // Start background animation after page load
+    window.addEventListener('load', () => {
+      setTimeout(createBackgroundAnimation, 1000);
+    });
 
-  <script src="script.js"></script>
-</body>
-</html>
+    // Project click interactions
+    document.querySelectorAll('.project').forEach((project, index) => {
+      project.addEventListener('click', () => {
+        const projectTitles = [
+          'Travel Capsule',
+          'Health & Wellness App',
+          'Hotel Booking App',
+          'Throttle Diary'
+        ];
+        alert(`Opening ${projectTitles[index]} project details...\n\nThis would typically open a detailed case study or project demo.`);
+      });
+    });
 
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Add intersection observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) =>
