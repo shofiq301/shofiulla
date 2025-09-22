@@ -578,4 +578,80 @@ html {
     padding: 8px 12px;
     font-size: 13px;
   }
+
+  .ielts-section {
+    font-size: 14px;
+}
+
+.ielts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 8px 12px;
+    background: rgba(6, 182, 212, 0.08);
+    border-radius: 6px;
+    border: 1px solid rgba(6, 182, 212, 0.15);
+}
+
+.ielts-title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.ielts-overall {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 15px;
+}
+
+.ielts-skills {
+    display: grid;
+    gap: 4px;
+}
+
+.skill-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.01);
+    border-radius: 4px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.skill-row span:first-child {
+    font-weight: 500;
+}
+
+.skill-row span:last-child {
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* Score colors */
+.score-excellent { 
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.score-good { 
+    background: rgba(6, 182, 212, 0.15);
+    color: var(--accent);
+}
+
+.score-average { 
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.score-below { 
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
 }
