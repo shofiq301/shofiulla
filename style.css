@@ -228,8 +228,8 @@ nav{
 }
 
 .profile-image {
-  width: 150px;          /* choose size you want */
-  height: 150px;
+  width: 200px;          /* choose size you want */
+  height: 200px;
   border-radius: 50%;    /* makes container circular */
   overflow: hidden;      /* crop the image inside */
   margin: 0 auto 16px auto; /* center align */
