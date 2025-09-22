@@ -116,16 +116,15 @@ header{
 .avatar {
   width: 56px;
   height: 56px;
-  border-radius: 50%;   /* make it circular */
-  overflow: hidden;     /* crop anything outside circle */
+  border-radius: 0; 
+  overflow: hidden;
   animation: float 3s ease-in-out infinite;
 }
-
 .avatar img {
   width: 100%;
   height: 100%;
-  object-fit: cover;    /* keeps aspect ratio */
-  border-radius: 50%;
+  object-fit: cover;
+  border-radius: 0;
 }
 
 .avatar:hover {
